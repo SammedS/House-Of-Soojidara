@@ -1225,16 +1225,56 @@
             }
         }
 
-        /* Scroll reveal */
+        /* Scroll reveal — base */
         .reveal {
             opacity: 0;
-            transform: translateY(40px);
-            transition: all 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            transform: translateY(48px);
+            transition: opacity 0.85s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                        transform 0.85s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
 
         .reveal.visible {
             opacity: 1;
             transform: translateY(0);
+        }
+
+        /* Slide from left */
+        .reveal-left {
+            opacity: 0;
+            transform: translateX(-60px);
+            transition: opacity 0.85s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                        transform 0.85s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .reveal-left.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        /* Slide from right */
+        .reveal-right {
+            opacity: 0;
+            transform: translateX(60px);
+            transition: opacity 0.85s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                        transform 0.85s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .reveal-right.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        /* Scale up */
+        .reveal-scale {
+            opacity: 0;
+            transform: scale(0.88);
+            transition: opacity 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                        transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .reveal-scale.visible {
+            opacity: 1;
+            transform: scale(1);
         }
 
         .reveal-delay-1 {
@@ -1253,7 +1293,216 @@
             transition-delay: 0.4s;
         }
 
-        /* Responsive */
+        .reveal-delay-5 {
+            transition-delay: 0.5s;
+        }
+
+        .reveal-delay-6 {
+            transition-delay: 0.65s;
+        }
+
+        /* ===== MOBILE (≤768px) ===== */
+        @media (max-width: 768px) {
+
+            /* Hide custom cursor on touch devices */
+            .cursor,
+            .cursor-ring {
+                display: none;
+            }
+
+            body {
+                cursor: auto;
+            }
+
+            /* NAV — collapse links, stack vertically */
+            nav {
+                padding: 14px 20px;
+                flex-wrap: wrap;
+                gap: 12px;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .nav-cta {
+                font-size: 10px;
+                padding: 8px 16px;
+            }
+
+            /* HERO — single column, text then image */
+            .hero {
+                grid-template-columns: 1fr;
+                height: auto;
+                min-height: unset;
+                padding-top: 70px;
+            }
+
+            .hero-left {
+                padding: 40px 24px 40px 24px;
+                justify-content: flex-start;
+            }
+
+            .hero-title {
+                font-size: clamp(40px, 11vw, 62px);
+            }
+
+            .hero-title .hero-stitched {
+                margin-top: 24px;
+                font-size: clamp(14px, 4vw, 18px);
+            }
+
+            .hero-subtitle {
+                font-size: 11px;
+                letter-spacing: 0.2em;
+            }
+
+            .hero-desc {
+                font-size: 14px;
+                max-width: 100%;
+                margin-bottom: 36px;
+            }
+
+            .hero-btns {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 16px;
+            }
+
+            .hero-right {
+                height: 70vw;
+                min-height: 260px;
+            }
+
+            .hero-badge {
+                left: 12px;
+                bottom: 12px;
+                padding: 10px 14px;
+                min-width: 100px;
+            }
+
+            .hero-badge-num {
+                font-size: 26px;
+            }
+
+            /* ABOUT */
+            .about {
+                grid-template-columns: 1fr;
+                padding: 80px 24px;
+                gap: 60px;
+            }
+
+            /* PORTFOLIO */
+            .portfolio {
+                padding: 80px 16px;
+            }
+
+            .portfolio-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 24px;
+                margin-bottom: 40px;
+            }
+
+            .filter-tabs {
+                flex-wrap: wrap;
+            }
+
+            .portfolio-grid {
+                grid-template-columns: 1fr 1fr;
+                grid-auto-rows: 140px;
+                gap: 6px;
+            }
+
+            .work-card:nth-child(1),
+            .work-card:nth-child(2),
+            .work-card:nth-child(3),
+            .work-card:nth-child(4),
+            .work-card:nth-child(5),
+            .work-card:nth-child(6) {
+                grid-column: span 1;
+                grid-row: span 1;
+            }
+
+            .work-card:nth-child(7) {
+                grid-column: span 2;
+                grid-row: span 1;
+            }
+
+            .work-card:nth-child(8),
+            .work-card:nth-child(9) {
+                display: none;
+            }
+
+            /* SERVICES */
+            .services {
+                padding: 80px 24px;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+                gap: 4px;
+            }
+
+            .service-card {
+                padding: 36px 28px;
+            }
+
+            /* PROCESS */
+            .process {
+                padding: 80px 24px;
+            }
+
+            .process-steps {
+                grid-template-columns: 1fr 1fr;
+                gap: 40px;
+            }
+
+            .process-steps::before {
+                display: none;
+            }
+
+            /* TESTIMONIALS */
+            .testimonials {
+                padding: 80px 24px;
+            }
+
+            .testi-grid {
+                grid-template-columns: 1fr;
+            }
+
+            /* CTA */
+            .cta {
+                padding: 100px 24px;
+            }
+
+            .cta-form-row {
+                flex-direction: column;
+            }
+
+            /* FOOTER */
+            footer {
+                padding: 60px 24px 32px;
+            }
+
+            .footer-top {
+                grid-template-columns: 1fr;
+                gap: 36px;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                gap: 16px;
+                text-align: center;
+            }
+
+            /* Section padding helpers */
+            .about-stats {
+                gap: 28px;
+            }
+        }
+
+        /* ===== TABLET (769px – 1024px) ===== */
         @media (max-width: 1024px) {
             .hero {
                 grid-template-columns: 1fr;
@@ -1482,7 +1731,7 @@
 
     <!-- ABOUT -->
     <section class="about" id="about">
-        <div class="about-img-wrap reveal">
+        <div class="about-img-wrap reveal-left">
             <div
                 style="width:100%; aspect-ratio:3/4; background: linear-gradient(160deg, #2abfbf 0%, #1a8f8f 40%, #0e5f5f 100%); position:relative; z-index:2; display:flex; align-items:center; justify-content:center;">
                 <div style="text-align:center; color:rgba(255,255,255,0.3);">
@@ -1507,7 +1756,7 @@
             <div class="about-deco"></div>
         </div>
 
-        <div class="reveal reveal-delay-2">
+        <div class="reveal-right reveal-delay-2">
             <div class="section-tag">Our Story</div>
             <h2 class="section-title">Where <em>Craft</em> Meets Couture</h2>
             <p class="about-text">House of Sooji Dhaara is a bespoke boutique born from a love for India's rich textile
@@ -1534,7 +1783,7 @@
 
     <!-- PORTFOLIO -->
     <section class="portfolio" id="work">
-        <div class="portfolio-header reveal">
+        <div class="portfolio-header reveal-right">
             <div>
                 <div class="section-tag">Our Work</div>
                 <h2 class="section-title" style="color:white;">Previous <em style="color:var(--teal)">Creations</em>
@@ -1626,12 +1875,12 @@
 
     <!-- SERVICES -->
     <section class="services" id="services">
-        <div class="services-header reveal">
+        <div class="services-header reveal-scale">
             <div class="section-tag">What We Create</div>
             <h2 class="section-title">Our <em>Specialities</em></h2>
         </div>
         <div class="services-grid">
-            <div class="service-card reveal">
+            <div class="service-card reveal-left">
                 <div class="service-num">01</div>
                 <div class="service-name">Bridal Wear</div>
                 <p class="service-desc">Your wedding day deserves something made just for you. We craft lehengas,
@@ -1645,7 +1894,7 @@
                     contemporary elegance — made to your measurements.</p>
                 <div class="service-arrow">→</div>
             </div>
-            <div class="service-card reveal reveal-delay-2">
+            <div class="service-card reveal-right reveal-delay-2">
                 <div class="service-num">03</div>
                 <div class="service-name">Blouses & Embroidery</div>
                 <p class="service-desc">Exquisite hand-embroidered blouses and garments that carry stories in every
@@ -1657,29 +1906,29 @@
 
     <!-- HOW IT WORKS -->
     <section class="process" id="process">
-        <div class="process-header reveal">
+        <div class="process-header reveal-scale">
             <div class="section-tag">How It Works</div>
             <h2 class="section-title">Your Order, <em>Step by Step</em></h2>
         </div>
         <div class="process-steps">
-            <div class="step reveal">
+            <div class="step reveal-scale">
                 <div class="step-icon">1</div>
                 <div class="step-title">Reach Out</div>
                 <p class="step-desc">DM us on Instagram or fill the order form. Tell us your vision, occasion, and
                     timeline.</p>
             </div>
-            <div class="step reveal reveal-delay-1">
+            <div class="step reveal-scale reveal-delay-2">
                 <div class="step-icon">2</div>
                 <div class="step-title">Consultation</div>
                 <p class="step-desc">We discuss fabrics, styles, and embroidery details. You share your measurements and
                     references.</p>
             </div>
-            <div class="step reveal reveal-delay-2">
+            <div class="step reveal-scale reveal-delay-4">
                 <div class="step-icon">3</div>
                 <div class="step-title">Crafting</div>
                 <p class="step-desc">Our artisans begin work. We keep you updated with photos at key milestones.</p>
             </div>
-            <div class="step reveal reveal-delay-3">
+            <div class="step reveal-scale reveal-delay-6">
                 <div class="step-icon">4</div>
                 <div class="step-title">Delivery</div>
                 <p class="step-desc">Your garment arrives perfectly finished, ready for your moment to shine.</p>
@@ -1689,26 +1938,26 @@
 
     <!-- TESTIMONIALS -->
     <section class="testimonials">
-        <div class="testimonials-header reveal">
+        <div class="testimonials-header reveal-scale">
             <div class="section-tag">Words of Love</div>
             <h2 class="section-title">From Our <em style="color:var(--teal)">Brides</em></h2>
         </div>
         <div class="testi-grid">
-            <div class="testi-card reveal">
+            <div class="testi-card reveal-left">
                 <div class="testi-quote">"</div>
                 <p class="testi-text">Aishwarya understood exactly what I wanted for my wedding. The lehenga was beyond
                     beautiful — every stitch felt personal and intentional.</p>
                 <div class="testi-name">Priya R.</div>
                 <div class="testi-role">Bride, Bengaluru · 2024</div>
             </div>
-            <div class="testi-card reveal reveal-delay-1">
+            <div class="testi-card reveal-scale reveal-delay-2">
                 <div class="testi-quote">"</div>
                 <p class="testi-text">I wore a custom blouse from House of Sooji Dhaara for my reception and got so many
                     compliments. The embroidery work is truly one of a kind.</p>
                 <div class="testi-name">Meghana K.</div>
                 <div class="testi-role">Customer · 2024</div>
             </div>
-            <div class="testi-card reveal reveal-delay-2">
+            <div class="testi-card reveal-right reveal-delay-4">
                 <div class="testi-quote">"</div>
                 <p class="testi-text">The haldi outfit they made for me was so light and ethereal. They nailed the
                     colour and fit perfectly. Worth every penny!</p>
@@ -1720,10 +1969,10 @@
 
     <!-- CTA / ORDER -->
     <section class="cta" id="order">
-        <h2 class="cta-title reveal">Ready to Create<br><em style="font-style:italic;">Your Garment?</em></h2>
-        <p class="cta-sub reveal">We take limited orders each month to ensure every piece gets the attention it
+        <h2 class="cta-title reveal-scale">Ready to Create<br><em style="font-style:italic;">Your Garment?</em></h2>
+        <p class="cta-sub reveal-scale reveal-delay-2">We take limited orders each month to ensure every piece gets the attention it
             deserves.</p>
-        <form class="cta-form reveal" action="https://formsubmit.co/a5fdba944fb87e55036d37e319f3ea25" method="POST">
+        <form class="cta-form reveal-scale reveal-delay-4" action="https://formsubmit.co/a5fdba944fb87e55036d37e319f3ea25" method="POST">
             <!-- FormSubmit Free Autoresponder -->
             <input type="hidden" name="_autoresponse"
                 value="Thank you for contacting House of Sooji Dhaara! We have received your enquiry and will get back to you shortly.">
@@ -1822,36 +2071,79 @@
             document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
         });
 
-        // Scroll reveal
-        const reveals = document.querySelectorAll('.reveal');
-        const observer = new IntersectionObserver(entries => {
+        // Scroll reveal — all animation types
+        const allReveal = document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale');
+        const revealObserver = new IntersectionObserver(entries => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('visible');
+                    revealObserver.unobserve(entry.target); // animate once only
                 }
             });
-        }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
-        reveals.forEach(el => observer.observe(el));
+        }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+        allReveal.forEach(el => revealObserver.observe(el));
 
-        // Filter tabs
-        document.querySelectorAll('.filter-tab').forEach(tab => {
-            tab.addEventListener('click', function () {
-                document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
-                this.classList.add('active');
-            });
-        });
+        // Auto-stagger work cards when portfolio section enters view
+        const portfolioGrid = document.querySelector('.portfolio-grid');
+        if (portfolioGrid) {
+            const cardObserver = new IntersectionObserver(entries => {
+                if (entries[0].isIntersecting) {
+                    const cards = portfolioGrid.querySelectorAll('.work-card');
+                    cards.forEach((card, i) => {
+                        card.style.opacity = '0';
+                        card.style.transform = 'translateY(32px) scale(0.96)';
+                        card.style.transition = `opacity 0.7s ease ${i * 0.08}s, transform 0.7s ease ${i * 0.08}s`;
+                        requestAnimationFrame(() => {
+                            setTimeout(() => {
+                                card.style.opacity = '1';
+                                card.style.transform = 'translateY(0) scale(1)';
+                            }, 50);
+                        });
+                    });
+                    cardObserver.unobserve(portfolioGrid);
+                }
+            }, { threshold: 0.1 });
+            cardObserver.observe(portfolioGrid);
+        }
 
-        // Order form
-        // Replaced custom order logic with Web3Forms Integration
+        // Animated stat counters
+        function animateCounter(el, target, suffix) {
+            let start = 0;
+            const duration = 1600;
+            const step = timestamp => {
+                if (!step.startTime) step.startTime = timestamp;
+                const progress = Math.min((timestamp - step.startTime) / duration, 1);
+                const ease = 1 - Math.pow(1 - progress, 3); // ease-out cubic
+                el.textContent = Math.floor(ease * target) + (suffix || '');
+                if (progress < 1) requestAnimationFrame(step);
+            };
+            requestAnimationFrame(step);
+        }
 
-        // Parallax on hero
-        window.addEventListener('scroll', () => {
-            const scrolled = window.pageYOffset;
-            const heroLeft = document.querySelector('.hero-left');
-            if (heroLeft) {
-                heroLeft.style.transform = `translateY(${scrolled * 0.15}px)`;
+        const statObserver = new IntersectionObserver(entries => {
+            if (entries[0].isIntersecting) {
+                document.querySelectorAll('.stat-num').forEach(el => {
+                    const raw = el.textContent.trim();
+                    const num = parseInt(raw.replace(/[^0-9]/g, ''));
+                    const suffix = raw.includes('%') ? '%' : '+';
+                    animateCounter(el, num, raw.includes('%') ? '%' : '');
+                });
+                statObserver.disconnect();
             }
-        });
+        }, { threshold: 0.5 });
+        const statsSection = document.querySelector('.about-stats');
+        if (statsSection) statObserver.observe(statsSection);
+
+        // Parallax on hero (desktop only — skip on touch)
+        if (!('ontouchstart' in window)) {
+            window.addEventListener('scroll', () => {
+                const scrolled = window.pageYOffset;
+                const heroLeft = document.querySelector('.hero-left');
+                if (heroLeft) {
+                    heroLeft.style.transform = `translateY(${scrolled * 0.12}px)`;
+                }
+            }, { passive: true });
+        }
     </script>
 </body>
 
