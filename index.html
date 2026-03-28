@@ -1207,15 +1207,27 @@
         @media (max-width: 1024px) {
             .hero {
                 grid-template-columns: 1fr;
-                min-height: auto;
+                height: auto;
+                min-height: 100vh;
             }
 
             .hero-right {
-                height: 60vw;
+                height: 80vh;
             }
 
             .hero-left {
-                padding: 60px 40px;
+                padding: 100px 30px 60px 30px;
+            }
+
+            .hero-badge {
+                left: 20px;
+                bottom: 20px;
+                padding: 12px 16px;
+                min-width: 120px;
+            }
+
+            .hero-badge-num {
+                font-size: 28px;
             }
 
             .about {
