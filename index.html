@@ -1040,15 +1040,27 @@
 
         .cta-form {
             display: flex;
-            gap: 0;
+            flex-direction: column;
+            gap: 16px;
             max-width: 480px;
             margin: 0 auto;
             position: relative;
             z-index: 1;
         }
 
+        .cta-form-row {
+            display: flex;
+            gap: 16px;
+        }
+
+        @media (max-width: 600px) {
+            .cta-form-row {
+                flex-direction: column;
+            }
+        }
+
         .cta-input {
-            flex: 1;
+            width: 100%;
             padding: 16px 24px;
             border: none;
             outline: none;
@@ -1057,6 +1069,7 @@
             background: rgba(255, 255, 255, 0.15);
             color: white;
             letter-spacing: 0.05em;
+            box-sizing: border-box;
         }
 
         .cta-input::placeholder {
@@ -1064,6 +1077,7 @@
         }
 
         .cta-btn {
+            width: 100%;
             padding: 16px 28px;
             background: white;
             color: var(--teal);
@@ -1709,13 +1723,27 @@
         <h2 class="cta-title reveal">Ready to Create<br><em style="font-style:italic;">Your Garment?</em></h2>
         <p class="cta-sub reveal">We take limited orders each month to ensure every piece gets the attention it
             deserves.</p>
-        <form class="cta-form reveal" onsubmit="handleOrder(event)">
-            <input class="cta-input" type="text" placeholder="Your name or Instagram handle" id="orderInput" />
+        <form class="cta-form reveal" action="https://formsubmit.co/poojaprasadsammed@gmail.com" method="POST">
+            <!-- FormSubmit Free Autoresponder -->
+            <input type="hidden" name="_autoresponse"
+                value="Thank you for contacting House of Sooji Dhaara! We have received your enquiry and will get back to you shortly.">
+            <!-- Disable FormSubmit captcha if you want a smoother experience, or leave it for spam protection -->
+            <input type="hidden" name="_captcha" value="false">
+
+            <div class="cta-form-row">
+                <input class="cta-input" type="text" name="name" placeholder="Your Name" required />
+                <input class="cta-input" type="text" name="instagram" placeholder="Instagram (Optional)" />
+            </div>
+            <div class="cta-form-row">
+                <input class="cta-input" type="email" name="email" placeholder="Email Address" required />
+                <input class="cta-input" type="tel" name="phone" placeholder="Phone Number" required />
+            </div>
+            <textarea class="cta-input" name="message"
+                placeholder="Tell us about the occasion, your vision, and timeline..." rows="4" required
+                style="resize: none;"></textarea>
+
             <button class="cta-btn" type="submit">Send Enquiry</button>
         </form>
-        <p id="orderMsg" style="margin-top:20px; color:rgba(255,255,255,0.8); font-size:13px; display:none;">
-            ✓ Thanks! We'll reach out to you on Instagram soon.
-        </p>
     </section>
 
     <!-- FOOTER -->
@@ -1814,14 +1842,7 @@
         });
 
         // Order form
-        function handleOrder(e) {
-            e.preventDefault();
-            const val = document.getElementById('orderInput').value.trim();
-            if (val) {
-                document.getElementById('orderMsg').style.display = 'block';
-                document.getElementById('orderInput').value = '';
-            }
-        }
+        // Replaced custom order logic with Web3Forms Integration
 
         // Parallax on hero
         window.addEventListener('scroll', () => {
